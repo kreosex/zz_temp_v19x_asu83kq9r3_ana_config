@@ -1,0 +1,1239 @@
+.settings-container {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 1rem;
+}
+
+.settings-group {
+    background-color: var(--surface);
+    border-radius: 1rem;
+    padding: 1.5rem;
+    margin-bottom: 1.5rem;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.settings-group h3 {
+    color: var(--primary-light);
+    margin-bottom: 1.5rem;
+    font-size: 1.2rem;
+    font-weight: 600;
+}
+
+.theme-list {
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+    max-width: 400px;
+    margin: 0 auto;
+}
+
+.theme-item {
+    display: flex;
+    align-items: center;
+    background-color: var(--background);
+    border: 2px solid transparent;
+    border-radius: 0.75rem;
+    padding: 0.75rem 1rem;
+    cursor: pointer;
+    transition: all 0.2s ease;
+}
+
+.theme-item:hover {
+    background-color: var(--surface);
+    transform: translateX(5px);
+}
+
+.theme-item.active {
+    border-color: var(--primary-color);
+    background-color: var(--surface);
+}
+
+.theme-colors {
+    display: flex;
+    gap: 0.35rem;
+    margin-right: 1rem;
+}
+
+.color-dot {
+    width: 16px;
+    height: 16px;
+    border-radius: 50%;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.theme-name {
+    color: var(--text);
+    font-size: 0.95rem;
+    font-weight: 500;
+}
+
+.theme-preview-colors {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 0.75rem;
+    margin-top: 1rem;
+    padding: 0.5rem;
+    background-color: var(--surface);
+    border-radius: 0.5rem;
+}
+
+.color-sample {
+    width: 100%;
+    aspect-ratio: 1;
+    border-radius: 0.5rem;
+    border: 2px solid var(--surface);
+    position: relative;
+    overflow: hidden;
+}
+
+.color-sample::after {
+    content: attr(data-color);
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background-color: rgba(0, 0, 0, 0.5);
+    color: white;
+    font-size: 0.7rem;
+    padding: 0.2rem;
+    text-align: center;
+}
+
+/* Sosyal Medya Kartları */
+.social-links-grid {
+    display: grid;
+    gap: 1rem;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    margin-top: 1rem;
+}
+
+.social-card {
+    display: flex;
+    align-items: center;
+    background-color: var(--background);
+    border-radius: 1rem;
+    padding: 1.2rem;
+    text-decoration: none;
+    color: var(--text);
+    transition: all 0.3s ease;
+    border: 2px solid transparent;
+    position: relative;
+    overflow: hidden;
+}
+
+.social-card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(45deg, transparent, rgba(255, 255, 255, 0.05));
+    opacity: 0;
+    transition: opacity 0.3s ease;
+}
+
+.social-card:hover::before {
+    opacity: 1;
+}
+
+.social-card:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+    border-color: var(--primary-color);
+}
+
+.social-icon {
+    width: 48px;
+    height: 48px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 12px;
+    margin-right: 1rem;
+    font-size: 1.5rem;
+    flex-shrink: 0;
+    background-color: rgba(255, 255, 255, 0.1);
+    transition: all 0.3s ease;
+}
+
+.social-card:hover .social-icon {
+    transform: scale(1.1);
+}
+
+.social-card.telegram .social-icon {
+    color: #0088cc;
+}
+
+.social-card.discord .social-icon {
+    color: #7289da;
+}
+
+.social-card.twitter .social-icon {
+    color: #1DA1F2;
+}
+
+.social-info {
+    flex-grow: 1;
+}
+
+.social-info h4 {
+    margin: 0;
+    font-size: 1.1rem;
+    font-weight: 600;
+    color: var(--text);
+}
+
+.social-info p {
+    margin: 0.3rem 0 0;
+    font-size: 0.9rem;
+    color: var(--text-secondary);
+    opacity: 0.8;
+}
+
+.social-arrow {
+    margin-left: 1rem;
+    font-size: 1rem;
+    color: var(--text-secondary);
+    opacity: 0.5;
+    transition: all 0.3s ease;
+}
+
+.social-card:hover .social-arrow {
+    transform: translateX(3px);
+    opacity: 1;
+    color: var(--primary-color);
+}
+
+@media (max-width: 768px) {
+    .social-links-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .social-card {
+        padding: 1rem;
+    }
+
+    .social-icon {
+        width: 40px;
+        height: 40px;
+        font-size: 1.2rem;
+    }
+}
+
+/* Gizlilik Politikası Butonu */
+.privacy-button {
+    width: 100%;
+    background: none;
+    border: none;
+    padding: 1rem;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    background-color: var(--background);
+    border-radius: 1rem;
+    transition: all 0.3s ease;
+}
+
+.privacy-button:hover {
+    background-color: var(--surface);
+    transform: translateX(5px);
+}
+
+.privacy-button-content {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+}
+
+.privacy-icon {
+    width: 48px;
+    height: 48px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 12px;
+    background-color: rgba(255, 255, 255, 0.1);
+    color: var(--primary-color);
+    font-size: 1.5rem;
+}
+
+.privacy-text {
+    text-align: left;
+}
+
+.privacy-text h4 {
+    margin: 0;
+    color: var(--text);
+    font-size: 1.1rem;
+    font-weight: 600;
+}
+
+.privacy-text p {
+    margin: 0.3rem 0 0;
+    color: var(--text-secondary);
+    font-size: 0.9rem;
+    opacity: 0.8;
+}
+
+.privacy-arrow {
+    color: var(--text-secondary);
+    opacity: 0.5;
+    font-size: 1rem;
+    transition: all 0.3s ease;
+}
+
+.privacy-button:hover .privacy-arrow {
+    transform: translateX(5px);
+    opacity: 1;
+    color: var(--primary-color);
+}
+
+/* Gizlilik Politikası Modal */
+.privacy-modal {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.8);
+    z-index: 9999;
+    backdrop-filter: blur(8px);
+}
+
+.privacy-modal.active {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    animation: modalFadeIn 0.3s ease;
+}
+
+@keyframes modalFadeIn {
+    from {
+        opacity: 0;
+        transform: scale(0.95);
+    }
+
+    to {
+        opacity: 1;
+        transform: scale(1);
+    }
+}
+
+.privacy-content {
+    background-color: var(--surface);
+    border-radius: 1.5rem;
+    width: 90%;
+    max-width: 600px;
+    max-height: 85vh;
+    overflow-y: auto;
+    position: relative;
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
+}
+
+.privacy-header {
+    padding: 1.5rem;
+    border-bottom: 2px solid var(--primary-color);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    position: sticky;
+    top: 0;
+    background-color: var(--surface);
+    z-index: 1;
+}
+
+.privacy-title {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+}
+
+.privacy-title i {
+    font-size: 2rem;
+    color: var(--primary-color);
+}
+
+.privacy-title h2 {
+    margin: 0;
+    font-size: 1.5rem;
+    color: var(--text);
+}
+
+.privacy-close {
+    background: none;
+    border: none;
+    color: var(--text-secondary);
+    font-size: 1.5rem;
+    cursor: pointer;
+    padding: 0.5rem;
+    border-radius: 50%;
+    transition: all 0.3s ease;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.privacy-close:hover {
+    background-color: rgba(255, 255, 255, 0.1);
+    color: var(--primary-color);
+    transform: rotate(90deg);
+}
+
+.privacy-body {
+    padding: 1.5rem;
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+}
+
+.privacy-card {
+    background-color: var(--background);
+    border-radius: 1rem;
+    padding: 1.5rem;
+    display: flex;
+    gap: 1.5rem;
+    transition: all 0.3s ease;
+}
+
+.privacy-card:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+}
+
+.privacy-card-icon {
+    width: 48px;
+    height: 48px;
+    min-width: 48px;
+    border-radius: 12px;
+    background-color: var(--primary-color);
+    color: white;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.5rem;
+}
+
+.privacy-card-content h3 {
+    margin: 0 0 0.8rem 0;
+    color: var(--text);
+    font-size: 1.2rem;
+}
+
+.privacy-card-content p {
+    margin: 0;
+    color: var(--text-secondary);
+    line-height: 1.6;
+    font-size: 0.95rem;
+}
+
+.privacy-footer {
+    padding: 1.5rem;
+    text-align: center;
+    border-top: 1px solid var(--background);
+}
+
+.privacy-footer p {
+    margin: 0;
+    color: var(--text-secondary);
+    font-size: 0.9rem;
+    opacity: 0.8;
+}
+
+@media (max-width: 768px) {
+    .privacy-card {
+        flex-direction: column;
+        gap: 1rem;
+        padding: 1.2rem;
+    }
+
+    .privacy-card-icon {
+        width: 40px;
+        height: 40px;
+        font-size: 1.2rem;
+    }
+}
+
+/* İzleme Geçmişi Bölümü */
+.watch-history {
+    margin-top: 2rem;
+}
+
+.watch-history-tabs {
+    display: flex;
+    gap: 1rem;
+    margin-bottom: 1rem;
+    background: var(--surface);
+    padding: 0.75rem;
+    border-radius: 12px;
+    justify-content: center;
+}
+
+/* Arama Kutusu */
+.search-container {
+    position: relative;
+    margin-bottom: 1.5rem;
+}
+
+.search-container input {
+    width: 100%;
+    padding: 0.75rem 1rem;
+    padding-right: 2.5rem;
+    border: none;
+    border-radius: 12px;
+    background: var(--surface);
+    color: var(--text);
+    font-size: 0.9rem;
+    transition: all 0.3s ease;
+    height: 40px;
+}
+
+.search-container input:focus {
+    outline: none;
+    box-shadow: 0 0 0 2px var(--primary-color);
+}
+
+.search-container i {
+    position: absolute;
+    right: 0.75rem;
+    top: 50%;
+    transform: translateY(-50%);
+    color: var(--text-secondary);
+    font-size: 1rem;
+    width: 40px;
+    height: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+/* İçerik Container'ı */
+.history-container {
+    max-height: 65vh;
+    overflow-y: auto;
+    padding-right: 0.5rem;
+    margin-right: -0.5rem;
+    scrollbar-width: thin;
+    scrollbar-color: var(--primary-color) var(--surface);
+}
+
+.history-container::-webkit-scrollbar {
+    width: 6px;
+}
+
+.history-container::-webkit-scrollbar-track {
+    background: var(--surface);
+    border-radius: 10px;
+}
+
+.history-container::-webkit-scrollbar-thumb {
+    background: var(--primary-color);
+    border-radius: 10px;
+}
+
+.history-container::-webkit-scrollbar-thumb:hover {
+    background: var(--primary-dark);
+}
+
+.history-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1rem;
+    padding: 0.5rem;
+    max-width: 600px;
+    margin: 0 auto;
+}
+
+.history-card {
+    position: relative;
+    background: var(--surface);
+    border-radius: 12px;
+    overflow: hidden;
+    transition: all 0.3s ease;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+    width: 100%;
+}
+
+.history-card:hover {
+    transform: translateY(-8px);
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.15);
+}
+
+.history-poster {
+    position: relative;
+    width: 100%;
+    padding-top: 120%;
+    overflow: hidden;
+}
+
+.history-poster img {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.3s ease;
+}
+
+.history-card:hover .history-poster img {
+    transform: scale(1.05);
+}
+
+.history-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(to bottom,
+            transparent 40%,
+            rgba(0, 0, 0, 0.6) 70%,
+            rgba(0, 0, 0, 0.9));
+    display: flex;
+    align-items: flex-end;
+    padding: 1.25rem;
+}
+
+.watch-date {
+    color: white;
+    font-size: 0.75rem;
+    background: rgba(0, 0, 0, 0.6);
+    padding: 0.3rem 0.6rem;
+    border-radius: 8px;
+    backdrop-filter: blur(4px);
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+}
+
+.history-info {
+    padding: 0.75rem;
+}
+
+.history-info h4 {
+    font-size: 0.85rem;
+    margin-bottom: 0.25rem;
+}
+
+.history-info p {
+    font-size: 0.75rem;
+}
+
+.history-info p i {
+    color: var(--primary-color);
+    font-size: 0.85rem;
+}
+
+.remove-history {
+    position: absolute;
+    top: 0.5rem;
+    right: 0.5rem;
+    width: 28px;
+    height: 28px;
+    border-radius: 50%;
+    background: rgba(0, 0, 0, 0.6);
+    border: none;
+    color: white;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    opacity: 0;
+    transition: all 0.3s ease;
+    backdrop-filter: blur(4px);
+    transform: scale(0.8);
+}
+
+.history-card:hover .remove-history {
+    opacity: 1;
+    transform: scale(1);
+}
+
+.remove-history:hover {
+    background: rgba(255, 0, 0, 0.8);
+    transform: scale(1.1);
+}
+
+.empty-history {
+    grid-column: 1 / -1;
+    text-align: center;
+    padding: 4rem 2rem;
+    color: var(--text-secondary);
+    background: var(--surface);
+    border-radius: 16px;
+    margin: 1rem;
+}
+
+.empty-history i {
+    font-size: 3.5rem;
+    margin-bottom: 1.5rem;
+    opacity: 0.5;
+    color: var(--primary-color);
+}
+
+.empty-history p {
+    font-size: 1.1rem;
+    margin: 0;
+    opacity: 0.8;
+}
+
+@media (max-width: 768px) {
+    .history-container {
+        max-height: 60vh;
+    }
+
+    .search-container input {
+        padding: 0.8rem 1.2rem;
+        font-size: 0.9rem;
+    }
+
+    .history-grid {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 0.75rem;
+    }
+
+    .history-info {
+        padding: 0.5rem;
+    }
+
+    .history-info h4 {
+        font-size: 0.8rem;
+    }
+
+    .history-info p {
+        font-size: 0.7rem;
+    }
+
+    .watch-date {
+        font-size: 0.7rem;
+        padding: 0.25rem 0.5rem;
+    }
+
+    .remove-history {
+        opacity: 1;
+        transform: scale(1);
+        width: 32px;
+        height: 32px;
+        background: rgba(255, 0, 0, 0.8);
+        top: 0.75rem;
+        right: 0.75rem;
+    }
+
+    .remove-history i {
+        font-size: 1rem;
+    }
+
+    .remove-history:active {
+        transform: scale(0.9);
+        background: rgba(255, 0, 0, 1);
+    }
+}
+
+/* Film ve Dizi Detaylarındaki İzlendi Rozeti */
+.watched-badge {
+    background: var(--primary-color);
+    color: white;
+    padding: 0.4rem 0.8rem;
+    border-radius: 8px;
+    font-size: 0.9rem;
+    display: inline-flex;
+    align-items: center;
+    gap: 0.4rem;
+    box-shadow: 0 2px 8px rgba(var(--primary-rgb), 0.2);
+}
+
+.watched-badge i {
+    font-size: 0.85rem;
+}
+
+/* Sezon İzlenme Durumu */
+.watched-count {
+    color: var(--primary-color);
+    font-size: 0.95rem;
+    display: inline-flex;
+    align-items: center;
+    gap: 0.4rem;
+    font-weight: 500;
+}
+
+.watched-count i {
+    font-size: 0.85rem;
+}
+
+/* İzle Butonu Durumları */
+.watch-btn.watched {
+    background: var(--primary-color);
+    color: white;
+    box-shadow: 0 4px 12px rgba(var(--primary-rgb), 0.2);
+}
+
+.watch-btn.watched:hover {
+    background: var(--primary-dark);
+    transform: translateY(-2px);
+    box-shadow: 0 6px 16px rgba(var(--primary-rgb), 0.3);
+}
+
+.tab-content {
+    display: none;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+}
+
+.tab-content.active {
+    display: block;
+    opacity: 1;
+}
+
+.tab-btn {
+    padding: 0.75rem 2rem;
+    border: none;
+    background: transparent;
+    color: var(--text-secondary);
+    border-radius: 8px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    font-weight: 500;
+    min-width: 120px;
+}
+
+.tab-btn.active {
+    background: var(--primary-color);
+    color: white;
+    box-shadow: 0 4px 12px rgba(var(--primary-rgb), 0.2);
+}
+
+.watch-history-content {
+    position: relative;
+    min-height: 200px;
+}
+
+.history-container {
+    max-height: 65vh;
+    overflow-y: auto;
+    padding-right: 0.5rem;
+    margin-right: -0.5rem;
+    scrollbar-width: thin;
+    scrollbar-color: var(--primary-color) var(--surface);
+}
+
+/* Watchlist Styles */
+.watchlist-section {
+    margin-top: 2rem;
+}
+
+.watchlist-container {
+    background: var(--surface-color);
+    border-radius: 12px;
+    padding: 1.5rem;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+.watchlist-tabs {
+    display: flex;
+    gap: 1rem;
+    margin-bottom: 1.5rem;
+    border-bottom: 1px solid var(--border-color);
+    padding-bottom: 1rem;
+}
+
+.tab-btn {
+    background: none;
+    border: none;
+    padding: 0.5rem 1rem;
+    border-radius: 8px;
+    color: var(--text-color);
+    cursor: pointer;
+    font-size: 1rem;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    transition: all 0.3s ease;
+}
+
+.tab-btn i {
+    font-size: 1.1rem;
+}
+
+.tab-btn .count {
+    font-size: 0.9rem;
+    opacity: 0.8;
+}
+
+.tab-btn.active {
+    background: var(--primary-color);
+    color: white;
+}
+
+.watchlist-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+    gap: 1.5rem;
+    display: none;
+}
+
+.watchlist-grid.active {
+    display: grid;
+}
+
+.watchlist-card {
+    background: var(--surface-color);
+    border-radius: 12px;
+    overflow: hidden;
+    transition: transform 0.3s ease;
+    cursor: pointer;
+}
+
+.watchlist-card:hover {
+    transform: translateY(-5px);
+}
+
+.watchlist-poster {
+    position: relative;
+    aspect-ratio: 2/3;
+}
+
+.watchlist-poster img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.watchlist-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.5);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+}
+
+.watchlist-card:hover .watchlist-overlay {
+    opacity: 1;
+}
+
+.remove-btn {
+    background: rgba(255, 255, 255, 0.2);
+    border: none;
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    color: white;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.3s ease;
+}
+
+.remove-btn:hover {
+    background: rgba(255, 255, 255, 0.3);
+    transform: scale(1.1);
+}
+
+.watchlist-info {
+    padding: 1rem;
+}
+
+.watchlist-info h3 {
+    margin: 0;
+    font-size: 1rem;
+    margin-bottom: 0.5rem;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.watchlist-meta {
+    display: flex;
+    flex-direction: column;
+    gap: 0.25rem;
+    font-size: 0.9rem;
+    opacity: 0.8;
+}
+
+.watchlist-meta span {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.empty-watchlist {
+    grid-column: 1 / -1;
+    text-align: center;
+    padding: 2rem;
+    color: var(--text-color);
+    opacity: 0.7;
+    font-size: 1.1rem;
+}
+
+@keyframes fadeOut {
+    from {
+        opacity: 1;
+        transform: scale(1);
+    }
+
+    to {
+        opacity: 0;
+        transform: scale(0.8);
+    }
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .watchlist-grid {
+        grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+        gap: 1rem;
+    }
+
+    .watchlist-info h3 {
+        font-size: 0.9rem;
+    }
+
+    .watchlist-meta {
+        font-size: 0.8rem;
+    }
+}
+
+@media (max-width: 480px) {
+    .watchlist-tabs {
+        flex-direction: column;
+        gap: 0.5rem;
+    }
+
+    .tab-btn {
+        width: 100%;
+        justify-content: center;
+    }
+}
+
+/* Watchlist Button Styles */
+.settings-button {
+    width: 100%;
+    background: none;
+    border: none;
+    padding: 1.2rem;
+    cursor: pointer;
+    border-radius: 12px;
+    transition: all 0.3s ease;
+    background: var(--surface);
+    margin-bottom: 1rem;
+}
+
+.settings-button:hover {
+    transform: translateX(5px);
+    background: var(--primary-color);
+}
+
+.settings-button-content {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    text-align: left;
+}
+
+.settings-button-icon {
+    width: 48px;
+    height: 48px;
+    background: rgba(255, 255, 255, 0.1);
+    border-radius: 12px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.5rem;
+    color: var(--primary-color);
+    flex-shrink: 0;
+}
+
+.settings-button:hover .settings-button-icon {
+    background: rgba(255, 255, 255, 0.2);
+    color: white;
+}
+
+.settings-button-text {
+    flex: 1;
+}
+
+.settings-button-text h4 {
+    margin: 0;
+    color: var(--text);
+    font-size: 1.1rem;
+    margin-bottom: 0.25rem;
+}
+
+.settings-button-text p {
+    margin: 0;
+    color: var(--text-secondary);
+    font-size: 0.9rem;
+}
+
+.settings-button-arrow {
+    color: var(--text-secondary);
+    font-size: 1rem;
+    transition: transform 0.3s ease;
+}
+
+.settings-button:hover .settings-button-arrow {
+    transform: translateX(5px);
+    color: white;
+}
+
+/* Watchlist Popup Styles */
+.watchlist-popup {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.8);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 1000;
+    opacity: 0;
+    visibility: hidden;
+    transition: all 0.3s ease;
+    backdrop-filter: blur(8px);
+}
+
+.watchlist-popup.show {
+    opacity: 1;
+    visibility: visible;
+}
+
+.watchlist-popup-content {
+    width: 90%;
+    max-width: 1200px;
+    max-height: 90vh;
+    background: var(--background);
+    border-radius: 20px;
+    overflow: hidden;
+    transform: scale(0.95);
+    transition: transform 0.3s ease;
+    box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5);
+}
+
+.watchlist-popup.show .watchlist-popup-content {
+    transform: scale(1);
+}
+
+.watchlist-popup-header {
+    padding: 1.5rem;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    background: var(--surface);
+}
+
+.watchlist-popup-header h2 {
+    margin: 0;
+    font-size: 1.5rem;
+    color: var(--text);
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+}
+
+.watchlist-popup-header h2 i {
+    color: var(--primary-color);
+}
+
+.close-popup-btn {
+    background: none;
+    border: none;
+    color: var(--text-secondary);
+    width: 36px;
+    height: 36px;
+    border-radius: 50%;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.2rem;
+    transition: all 0.3s ease;
+}
+
+.close-popup-btn:hover {
+    background: rgba(255, 255, 255, 0.1);
+    color: var(--primary-color);
+    transform: rotate(90deg);
+}
+
+.watchlist-container {
+    padding: 1.5rem;
+    overflow-y: auto;
+    max-height: calc(90vh - 80px);
+}
+
+/* Update existing watchlist styles */
+.watchlist-tabs {
+    display: flex;
+    gap: 1rem;
+    margin-bottom: 1.5rem;
+    background: var(--surface);
+    padding: 0.75rem;
+    border-radius: 12px;
+}
+
+.watchlist-tabs .tab-btn {
+    flex: 1;
+    padding: 0.75rem 1.5rem;
+    border: none;
+    border-radius: 8px;
+    background: none;
+    color: var(--text-secondary);
+    cursor: pointer;
+    font-size: 1rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+    transition: all 0.3s ease;
+}
+
+.watchlist-tabs .tab-btn.active {
+    background: var(--primary-color);
+    color: white;
+}
+
+.watchlist-tabs .tab-btn i {
+    font-size: 1.1rem;
+}
+
+.watchlist-tabs .tab-btn .count {
+    background: rgba(255, 255, 255, 0.1);
+    padding: 0.2rem 0.5rem;
+    border-radius: 20px;
+    font-size: 0.8rem;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .watchlist-popup-content {
+        width: 100%;
+        height: 100%;
+        max-height: 100vh;
+        border-radius: 0;
+    }
+
+    .watchlist-container {
+        height: calc(100vh - 80px);
+        max-height: none;
+    }
+
+    .watchlist-tabs {
+        flex-direction: row;
+        padding: 0.5rem;
+    }
+
+    .watchlist-tabs .tab-btn {
+        padding: 0.5rem 1rem;
+        font-size: 0.9rem;
+    }
+}

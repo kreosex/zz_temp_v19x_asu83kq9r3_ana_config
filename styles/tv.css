@@ -1,0 +1,590 @@
+.coming-soon {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 70vh;
+    text-align: center;
+    padding: 2rem;
+}
+
+.coming-soon i {
+    font-size: 5rem;
+    color: var(--primary-color);
+    margin-bottom: 2rem;
+}
+
+.coming-soon h2 {
+    color: var(--text);
+    font-size: 1.5rem;
+    margin-bottom: 1rem;
+}
+
+.popular-broadcasts {
+    padding: 10px;
+    position: relative;
+}
+
+.popular-broadcasts h2 {
+    color: var(--text-color);
+    margin-bottom: 15px;
+    margin-left: 5px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 1.2rem;
+}
+
+.popular-broadcasts h2::before {
+    content: '\f26c';
+    font-family: 'Font Awesome 5 Free';
+    font-weight: 900;
+    color: var(--primary-color);
+    font-size: 1em;
+}
+
+.broadcasts-grid {
+    display: flex;
+    overflow-x: auto;
+    gap: 12px;
+    padding: 8px 5px;
+    scroll-snap-type: x mandatory;
+    -webkit-overflow-scrolling: touch;
+    scrollbar-width: none;
+    position: relative;
+    background: linear-gradient(180deg, rgba(var(--primary-rgb), 0.1) 0%, rgba(var(--primary-rgb), 0) 100%);
+    border-radius: 12px;
+}
+
+.broadcasts-grid::-webkit-scrollbar {
+    display: none;
+    /* Chrome, Safari and Opera */
+}
+
+.broadcast-item {
+    flex: 0 0 auto;
+    width: 100px;
+    position: relative;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    scroll-snap-align: start;
+    padding: 8px;
+    background: rgba(var(--background-rgb), 0.5);
+    border-radius: 10px;
+    border: 1px solid rgba(var(--primary-rgb), 0.1);
+}
+
+.broadcast-item:hover {
+    transform: translateY(-5px);
+    background: rgba(var(--primary-rgb), 0.1);
+    border-color: rgba(var(--primary-rgb), 0.3);
+}
+
+.broadcast-thumbnail {
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+    object-fit: cover;
+    border: 2px solid var(--primary-color);
+    box-shadow: 0 0 10px rgba(var(--primary-rgb), 0.3);
+}
+
+.broadcast-item:hover .broadcast-thumbnail {
+    border-width: 3px;
+    box-shadow: 0 0 15px rgba(var(--primary-rgb), 0.5);
+}
+
+.broadcast-title {
+    margin-top: 6px;
+    color: var(--text-color);
+    font-size: 0.75em;
+    font-weight: 500;
+    max-width: 90px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+.live-indicator {
+    position: absolute;
+    top: 3px;
+    right: 3px;
+    background: linear-gradient(45deg, #ff0000, #ff3333);
+    color: white;
+    padding: 1px 4px;
+    border-radius: 6px;
+    font-size: 0.65em;
+    font-weight: bold;
+    box-shadow: 0 2px 4px rgba(255, 0, 0, 0.3);
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+.viewer-count {
+    font-size: 0.7em;
+    color: var(--text-color-secondary);
+    margin-top: 4px;
+    display: flex;
+    align-items: center;
+    gap: 3px;
+}
+
+.viewer-count::before {
+    content: '\f007';
+    font-family: 'Font Awesome 5 Free';
+    font-weight: 900;
+    font-size: 0.9em;
+    color: var(--primary-color);
+}
+
+/* Modal styles */
+.modal {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100vh;
+    background-color: rgba(0, 0, 0, 0.95);
+    z-index: 1000;
+    overflow: hidden;
+}
+
+.modal-content {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 90%;
+    max-width: 1000px;
+    background-color: transparent;
+    border-radius: 10px;
+}
+
+.close-modal {
+    position: absolute;
+    right: 10px;
+    top: -40px;
+    color: white;
+    font-size: 24px;
+    cursor: pointer;
+    z-index: 1001;
+    width: 32px;
+    height: 32px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: rgba(255, 255, 255, 0.2);
+    border-radius: 50%;
+    transition: all 0.3s ease;
+    border: 2px solid rgba(255, 255, 255, 0.3);
+}
+
+.close-modal:hover {
+    background: rgba(255, 255, 255, 0.3);
+    transform: scale(1.1);
+    border-color: rgba(255, 255, 255, 0.5);
+}
+
+#videoPlayer {
+    width: 100%;
+    height: 0;
+    padding-bottom: 56.25%;
+    /* 16:9 aspect ratio */
+    position: relative;
+    background-color: black;
+    border-radius: 8px;
+    overflow: hidden;
+    box-shadow: 0 0 30px rgba(0, 0, 0, 0.5);
+}
+
+#videoPlayer video {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+}
+
+body.modal-open {
+    overflow: hidden;
+    padding-right: 15px;
+    /* Scrollbar genişliği kadar padding ekle */
+}
+
+/* Add scroll buttons for better UX */
+.broadcasts-container {
+    position: relative;
+    margin: 0 -20px;
+    padding: 0 20px;
+}
+
+.scroll-button {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    background: rgba(0, 0, 0, 0.5);
+    color: white;
+    border: none;
+    border-radius: 50%;
+    width: 40px;
+    height: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    z-index: 1;
+    transition: opacity 0.3s ease;
+}
+
+.scroll-button.left {
+    left: 5px;
+}
+
+.scroll-button.right {
+    right: 5px;
+}
+
+.scroll-button:hover {
+    background: rgba(0, 0, 0, 0.7);
+}
+
+@media (hover: none) {
+    .scroll-button {
+        display: none;
+    }
+}
+
+.broadcast-notification {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%) scale(0.9);
+    background: var(--background-color);
+    padding: 20px;
+    border-radius: 15px;
+    box-shadow: 0 5px 30px rgba(0, 0, 0, 0.3);
+    z-index: 1000;
+    text-align: center;
+    opacity: 0;
+    visibility: hidden;
+    transition: all 0.3s ease;
+    border: 1px solid rgba(var(--primary-rgb), 0.2);
+    max-width: 90%;
+    width: 300px;
+}
+
+.broadcast-notification.show {
+    opacity: 1;
+    visibility: visible;
+    transform: translate(-50%, -50%) scale(1);
+}
+
+.notification-icon {
+    font-size: 2.5em;
+    color: var(--primary-color);
+    margin-bottom: 15px;
+    display: block;
+}
+
+.notification-title {
+    color: var(--text-color);
+    font-size: 1.2em;
+    margin-bottom: 10px;
+    font-weight: 600;
+}
+
+.notification-message {
+    color: var(--text-color-secondary);
+    font-size: 0.9em;
+    margin-bottom: 20px;
+    line-height: 1.4;
+}
+
+.notification-button {
+    background: var(--primary-color);
+    color: white;
+    border: none;
+    padding: 8px 20px;
+    border-radius: 8px;
+    cursor: pointer;
+    font-size: 0.9em;
+    transition: background 0.3s ease;
+}
+
+.notification-button:hover {
+    background: var(--primary-color-dark);
+}
+
+.notification-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(0, 0, 0, 0.5);
+    z-index: 999;
+    opacity: 0;
+    visibility: hidden;
+    transition: all 0.3s ease;
+}
+
+.notification-overlay.show {
+    opacity: 1;
+    visibility: visible;
+}
+
+/* Tüm Yayınlar Bölümü */
+.all-broadcasts {
+    margin-top: 20px;
+    padding: 15px;
+    background: rgba(var(--background-rgb), 0.5);
+    border-radius: 12px;
+}
+
+.broadcasts-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px;
+}
+
+.broadcasts-header h2 {
+    font-size: 1.2rem;
+    color: var(--text-color);
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.broadcasts-header h2::before {
+    content: '\f519';
+    font-family: 'Font Awesome 5 Free';
+    font-weight: 900;
+    color: var(--primary-color);
+}
+
+.search-section {
+    margin: 0 0 20px 0;
+    display: flex;
+    justify-content: center;
+    padding: 10px;
+    background: rgba(var(--background-rgb), 0.3);
+    border-radius: 12px;
+}
+
+.search-container {
+    position: relative;
+    width: 100%;
+    max-width: 600px;
+}
+
+.search-container input {
+    width: 100%;
+    padding: 12px 40px 12px 20px;
+    border: 1px solid rgba(var(--primary-rgb), 0.2);
+    border-radius: 25px;
+    background: rgba(var(--background-rgb), 0.8);
+    color: var(--text-color);
+    font-size: 1rem;
+    transition: all 0.3s ease;
+}
+
+.search-container input:focus {
+    outline: none;
+    border-color: var(--primary-color);
+    box-shadow: 0 0 0 3px rgba(var(--primary-rgb), 0.1);
+    background: rgba(var(--background-rgb), 1);
+}
+
+.search-icon {
+    position: absolute;
+    right: 15px;
+    top: 50%;
+    transform: translateY(-50%);
+    color: var(--text-color-secondary);
+    font-size: 1rem;
+    pointer-events: none;
+}
+
+/* Ülkeler Listesi */
+.countries-list {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+    gap: 15px;
+    padding: 10px 0;
+}
+
+.country-item {
+    background: rgba(var(--background-rgb), 0.8);
+    border: 1px solid rgba(var(--primary-rgb), 0.1);
+    border-radius: 10px;
+    padding: 15px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.country-item:hover {
+    transform: translateY(-3px);
+    background: rgba(var(--primary-rgb), 0.1);
+    border-color: rgba(var(--primary-rgb), 0.3);
+}
+
+.country-flag {
+    width: 30px;
+    height: 20px;
+    object-fit: cover;
+    border-radius: 4px;
+}
+
+.country-name {
+    color: var(--text-color);
+    font-size: 0.9rem;
+    font-weight: 500;
+}
+
+/* Kategoriler */
+.categories-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(120px, 1fr));
+    gap: 15px;
+    padding: 10px 0;
+}
+
+.category-item {
+    background: rgba(var(--background-rgb), 0.8);
+    border: 1px solid rgba(var(--primary-rgb), 0.1);
+    border-radius: 10px;
+    padding: 15px 10px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    text-align: center;
+}
+
+.category-item:hover {
+    transform: translateY(-3px);
+    background: rgba(var(--primary-rgb), 0.1);
+    border-color: rgba(var(--primary-rgb), 0.3);
+}
+
+.category-icon {
+    font-size: 1.5rem;
+    color: var(--primary-color);
+    margin-bottom: 8px;
+}
+
+.category-name {
+    color: var(--text-color);
+    font-size: 0.9rem;
+    font-weight: 500;
+}
+
+/* Kanallar */
+.channels-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 15px;
+    padding: 10px 0;
+}
+
+.channel-item {
+    background: rgba(var(--background-rgb), 0.8);
+    border: 1px solid rgba(var(--primary-rgb), 0.1);
+    border-radius: 12px;
+    padding: 15px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    display: flex;
+    align-items: center;
+    gap: 15px;
+}
+
+.channel-item:hover {
+    transform: translateY(-3px);
+    background: rgba(var(--primary-rgb), 0.1);
+    border-color: rgba(var(--primary-rgb), 0.3);
+    box-shadow: 0 5px 15px rgba(var(--primary-rgb), 0.1);
+}
+
+.channel-logo {
+    width: 60px;
+    height: 60px;
+    object-fit: contain;
+    flex-shrink: 0;
+}
+
+.channel-name {
+    color: var(--text-color);
+    font-size: 1rem;
+    font-weight: 500;
+    text-align: left;
+}
+
+/* Responsive tasarım için medya sorguları */
+@media (max-width: 768px) {
+    .channels-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .channel-item {
+        padding: 12px;
+    }
+
+    .channel-logo {
+        width: 50px;
+        height: 50px;
+    }
+
+    .channel-name {
+        font-size: 0.9rem;
+    }
+}
+
+/* Breadcrumb Navigation */
+.header-left {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+}
+
+.breadcrumb {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    margin-left: 5px;
+    font-size: 0.85rem;
+}
+
+.breadcrumb-item {
+    color: var(--text-color-secondary);
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    padding: 3px 8px;
+    border-radius: 15px;
+    transition: all 0.2s ease;
+}
+
+.breadcrumb-item:hover {
+    color: var(--primary-color);
+    background: rgba(var(--primary-rgb), 0.1);
+}
+
+.breadcrumb-item i {
+    font-size: 0.9em;
+}
+
+.breadcrumb-separator {
+    color: var(--text-color-secondary);
+    opacity: 0.5;
+    font-size: 0.7em;
+}
